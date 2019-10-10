@@ -1,0 +1,29 @@
+<img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
+<form [formGroup]='myForm'>
+    <div>
+        <label hidden for="firstName">Game</label>
+        <input matInput name="firstName" placeholder="First Name" formControlName="firstName">
+    </div>
+    <mat-error *ngIf='firstName.touched && firstName.invalid'>Error</mat-error>
+
+    <div>
+        <label hidden for="lastName">Game</label>
+        <input matInput name="lastName" placeholder="Last Name" formControlName="lastName">
+    </div>
+    <mat-error *ngIf='lastName.touched && lastName.invalid'>Error</mat-error>
+
+    <div>
+        <label hidden for="email">Game</label>
+        <input matInput name="email" placeholder="Email" formControlName="email">
+    </div>
+    <mat-error *ngIf='email.touched && email.invalid'>Error</mat-error><br>
+
+    <app-canvas></app-canvas>
+    <section class="example-section">
+        <mat-checkbox class="example-margin" >I accept the terms and conditions</mat-checkbox>
+        
+    </section>
+  
+    
+    <button mat-raised-button class="teal lighten-2 white-text">Submit</button>
+</form>
