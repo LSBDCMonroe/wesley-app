@@ -13,7 +13,7 @@ import { Position, Line } from '../../model';
 export class CanvasComponent implements AfterViewInit {
 
   @ViewChild('canvas', {static: false}) public canvas: ElementRef;
-  @Output() liness: EventEmitter<any> = new EventEmitter();
+  @Output() linesEvent: EventEmitter<any> = new EventEmitter();
   width = 500;
   height = 150;
   lines: Position[] = [];
@@ -70,6 +70,7 @@ export class CanvasComponent implements AfterViewInit {
       this.cx.moveTo(prevPos.x, prevPos.y); // from
       this.cx.lineTo(currentPos.x, currentPos.y);
       this.cx.stroke();
+      this.sendLines()
     }
   }
 
@@ -97,6 +98,6 @@ export class CanvasComponent implements AfterViewInit {
    this.drawLine.forEach(({prevPos , currentPos}: Position) => this.drawOnCanvas(prevPos, currentPos));
   }
   sendLines() {
-    this.liness.emit(this.lines);
+    this.linesEvent.emit(this.lines);
   }
 }

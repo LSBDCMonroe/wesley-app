@@ -8,7 +8,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 const MaterialComponents = [
+  MatRadioModule,
   MatCardModule,
   MatListModule,
   MatButtonModule,
