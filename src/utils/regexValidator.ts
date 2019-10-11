@@ -8,9 +8,9 @@ function emailTest( email: string) : boolean {
   return emailRegex.test(email);
 }
 
-function userTest( email: string) : boolean {
+function userTest( user: any) : boolean {
   const emailRegex = /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
-  return emailRegex.test(email);
+  return emailRegex.test(user.email) || nameTest(user.firstName);
 }
 
 

@@ -45,7 +45,7 @@ export class FormsComponent implements OnInit {
     const email: string = this.email.value;
     const classification: number = this.classification.value;
     const signature: Position[] = this.signature;
-    this.sf.submitUser({firstName, lastName, email, signature, classification});
+    this.sf.submitUser({firstName, lastName, email, signature, classification}).subscribe((res)=>console.log(res));
   }
 
   getLines($event) {
