@@ -1,12 +1,9 @@
-import {
-  Component, Input, ElementRef, AfterViewInit, ViewChild
-} from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
+import { Position, Line } from '../../model';
 
-interface Line {x: number; y: number; }
-interface Position { prevPos: Line; currentPos: Line; }
 
 @Component({
   selector: 'app-canvas',
@@ -16,7 +13,7 @@ interface Position { prevPos: Line; currentPos: Line; }
 export class CanvasComponent implements AfterViewInit {
 
   @ViewChild('canvas', {static: false}) public canvas: ElementRef;
-
+  @Output() liness: EventEmitter<any> = new EventEmitter();
   width = 500;
   height = 150;
   lines: Position[] = [];
@@ -99,5 +96,7 @@ export class CanvasComponent implements AfterViewInit {
   drawLines() {
    this.drawLine.forEach(({prevPos , currentPos}: Position) => this.drawOnCanvas(prevPos, currentPos));
   }
-
+  sendLines() {
+    this.liness.emit(this.lines);
+  }
 }

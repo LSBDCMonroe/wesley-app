@@ -11,6 +11,7 @@ export class SubmitFormService {
 
 submitUser(user: User): Observable<any> {
   const { firstName, lastName, email, classification } = user;
+  console.log(user);
   return this.http.post(this.apiUrl, { firstName, lastName, email, classification }, {headers: {}});
 }
 
