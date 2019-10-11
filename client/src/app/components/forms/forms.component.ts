@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { SubmitFormService } from '../../services/submit-form.service';
+import { User} from '../../model';
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -7,6 +10,7 @@ import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 })
 export class FormsComponent implements OnInit {
   myForm: FormGroup;
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
