@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from "express";
 import { SetRoutes } from "./routes";
 import { InitMiddleWare, ConnectDB } from "./middlewares";
 import { Port, MongoURI } from "./config";
-import { logger, deleteLogs } from "./middlewares/logger";
 
 const app = express();
 InitMiddleWare(app);
@@ -17,7 +16,7 @@ ConnectDB(MongoURI).catch((err: Error) => {
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction): void => {
-    console.log(err);
+
     res.status(400)
         .send({ success: false, message: err.message || err });
   }

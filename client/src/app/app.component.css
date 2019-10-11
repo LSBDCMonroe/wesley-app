@@ -1,0 +1,9 @@
+.main{
+    background-image: url(../assets/b.svg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0%;
+    width: 100%;
+    min-height: 100vh;
+}

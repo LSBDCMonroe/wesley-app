@@ -1,0 +1,6 @@
+.container {
+    min-height:  98vh;
+    margin: auto;
+    background: white;
+    box-sizing: content-box;
+}

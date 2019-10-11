@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsComponent } from './components/forms/forms.component';
 import { CanvasWhiteboardModule} from 'ng2-canvas-whiteboard';
 import { CanvasComponent } from './components/canvas/canvas.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,7 @@ import { CanvasComponent } from './components/canvas/canvas.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,

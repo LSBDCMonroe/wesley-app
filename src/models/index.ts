@@ -1,2 +1,2 @@
-import urlModel from './urlModel';
-export { urlModel };
+import userModel from './user-model';
+export { userModel };
