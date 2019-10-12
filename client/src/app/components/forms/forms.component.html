@@ -1,35 +1,40 @@
-<img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
-<form [formGroup]='myForm'>
-    <div>
+
+<form [formGroup]='myForm' class="form-grid">
+        <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
+    <section>
         <label hidden for="firstName">First Name</label>
         <input matInput name="firstName" placeholder="First Name" formControlName="firstName">
-    </div>
-    <mat-error *ngIf='firstName.touched && firstName.invalid'>Error</mat-error>
+        <mat-error *ngIf='firstName.touched && firstName.invalid'>Error</mat-error>
+    </section>
 
-    <div>
+    <section>
         <label hidden for="lastName">Last Name</label>
         <input matInput name="lastName" placeholder="Last Name" formControlName="lastName">
-    </div>
-    <mat-error *ngIf='lastName.touched && lastName.invalid'>Error</mat-error>
+        <mat-error *ngIf='lastName.touched && lastName.invalid'>Error</mat-error>
+    </section>
 
-    <div>
+    <section>
         <label hidden for="email">Email</label>
         <input matInput name="email" placeholder="Email" formControlName="email">
-    </div>
-    <mat-error *ngIf='email.touched && email.invalid'>Error</mat-error><br>
-    <section>
-    <label for='classification'>Pick your classification</label>
-    <mat-radio-group class="radio-group"  formControlName="classification">
-        <mat-radio-button  *ngFor="let classification of classifications; let i = index" [value]="i">
-            {{classification}}
-        </mat-radio-button>
-    </mat-radio-group>
+        <mat-error *ngIf='email.touched && email.invalid'>Error</mat-error>
     </section>
-    <app-canvas (linesEvent)='getLines($event)'></app-canvas>
+
+    <section>
+        <label for='classification'>Pick your classification</label>
+        <mat-radio-group class="radio-group" formControlName="classification">
+            <mat-radio-button *ngFor="let classification of classifications; let i = index" [value]="i">
+                {{classification}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <section>
+        <app-canvas (linesEvent)='getLines($event)'></app-canvas>
+    </section>
+
     <section>
         <mat-checkbox class="example-margin">I accept the terms and conditions</mat-checkbox>
     </section>
-
 
     <button class="btn waves-effect waves-light teal darken-3 right" type="submit" (click)="submit()">Submit <i
             class="material-icons right">send</i></button>
