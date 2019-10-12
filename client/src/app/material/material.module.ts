@@ -9,6 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDialogModule} from '@angular/material/dialog';
 const MaterialComponents = [
   MatRadioModule,
   MatCardModule,
@@ -18,7 +19,9 @@ const MaterialComponents = [
   MatChipsModule,
   MatIconModule,
   MatAutocompleteModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDialogModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

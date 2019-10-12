@@ -10,12 +10,16 @@ import { FormsComponent } from './components/forms/forms.component';
 import { CanvasWhiteboardModule} from 'ng2-canvas-whiteboard';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './components/modal/modal.component';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     FormsComponent,
     CanvasComponent,
+    ModalComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     CanvasWhiteboardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ModalComponent]
 })
 export class AppModule { }
