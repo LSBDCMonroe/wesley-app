@@ -1,5 +1,5 @@
 <div class="container">
-<mat-card class='card-1' *ngIf='!status'>
+<mat-card class='card-1 pop-appear' *ngIf='!status'>
     <mat-card-header>
       <mat-card-title>Welcome to Wesley App</mat-card-title>
       <mat-card-subtitle>Kayak</mat-card-subtitle>
@@ -17,7 +17,7 @@
   </mat-card>
 
 
-  <mat-card *ngIf='status' class=' card-1'>
+  <mat-card *ngIf='status' class='card-1 pop-appear'>
         <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
         <mat-card-header>  
           <mat-card-title>Enter Your Email</mat-card-title>

@@ -13,7 +13,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
 export class FormsComponent implements OnInit {
   private myForm: FormGroup;
   public signature: Position[];
-  public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
+  public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'None'];
 
 
 
