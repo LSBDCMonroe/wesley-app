@@ -3,11 +3,19 @@ import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { SubmitFormService } from '../../services/submit-form.service';
 import { User} from '../../model';
 import { Position } from '../../model'
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  animations: [
+    state('open', style({
+      height: '200px',
+      opacity: 1,
+      backgroundColor: 'yellow'
+    })),
+  ]
 })
 export class FormsComponent implements OnInit {
   myForm: FormGroup;
