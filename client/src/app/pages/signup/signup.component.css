@@ -1,6 +1,8 @@
 .container {
     min-height:  98vh;
     margin: auto;
-    background: white;
+    background: transparent;
     box-sizing: content-box;
+    display: grid;
+    place-items: center;
 }

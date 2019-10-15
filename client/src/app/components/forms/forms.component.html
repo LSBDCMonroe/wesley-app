@@ -1,5 +1,5 @@
 
-<form [formGroup]='myForm' class="form-grid">
+<form [@openClose]="isOpen ? 'open' : 'closed'"  [formGroup]='myForm' class="form-grid card">
         <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
     <section>
         <label hidden for="firstName">First Name</label>
@@ -35,7 +35,10 @@
     <section>
         <mat-checkbox >I accept the terms and conditions</mat-checkbox>
     </section>
-
-    <button class="btn waves-effect waves-light teal darken-3 right" type="submit" (click)="onCreate()">Submit <i
+    <section class="grid-2">
+    <button  style="margin: 1px" class="btn waves-effect waves-light teal darken-3"  routerLink='/'>Go Back <i
             class="material-icons right">send</i></button>
+    <button  style="margin: 1px" class="btn waves-effect waves-light teal darken-3" type="submit" (click)="onCreate()">Submit <i
+                class="material-icons right">send</i></button>
+    </section>
 </form>

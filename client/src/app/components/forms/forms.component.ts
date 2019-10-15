@@ -2,34 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { SubmitFormService } from '../../services/submit-form.service';
 import { User} from '../../model';
-<<<<<<< HEAD
 import { Position } from '../../model'
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
-=======
-import { Position } from '../../model';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ModalComponent } from '../../components/modal/modal.component';
->>>>>>> a3aa3de287eb9d4254714072da60dd1f86f367d8
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css'],
   animations: [
-    state('open', style({
-      height: '200px',
-      opacity: 1,
-      backgroundColor: 'yellow'
-    })),
-  ]
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        transform: 'scale(1)'
+      })),
+      state('closed', style({
+        transform: 'scale(0)'
+      })),
+      transition('open => closed', [
+        animate('.8s')
+      ]),
+      transition('closed => open', [
+        animate('.8s')
+      ]),
+    ]),
+  ],
 })
 export class FormsComponent implements OnInit {
   private myForm: FormGroup;
+  private isOpen = false;
   public signature: Position[];
   public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'None'];
-
-
-
 
   constructor(private formBuilder: FormBuilder, private sf: SubmitFormService, public modal: MatDialog) { }
 
@@ -46,7 +50,8 @@ export class FormsComponent implements OnInit {
       email: ['', [ Validators.required, Validators.minLength(5)]],
       classification: ['', [ Validators.required]]
     });
-  
+
+    setTimeout(() => this.toggle(), 100);
 
   }
 
@@ -80,5 +85,9 @@ export class FormsComponent implements OnInit {
 
   onCreate() {
     this.modal.open(ModalComponent);
+  }
+
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 }

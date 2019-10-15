@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model';
+import { SubmitFormService } from '../../services/submit-form.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
   user: User;
   email: string;
   gotUser: boolean;
-  constructor() { }
+  constructor(private submit: SubmitFormService) { }
 
   ngOnInit() {
   }
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
     this.status = value;
   }
 
-  getUser() {
+  searchUser() {
+    this.submit.searchUser(this.email).subscribe(res=> console.log(res));
   }
 
 }
