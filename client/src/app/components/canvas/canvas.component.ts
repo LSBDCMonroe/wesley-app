@@ -32,6 +32,7 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.lineCap = 'round';
     this.cx.strokeStyle = '#000';
 
+    this.captureTouchEvents(canvasEl);
     this.captureEvents(canvasEl);
   }
 
@@ -48,7 +49,7 @@ export class CanvasComponent implements AfterViewInit {
       })
     ).subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-
+     
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top
@@ -60,6 +61,33 @@ export class CanvasComponent implements AfterViewInit {
         this.drawOnCanvas(prevPos, currentPos);
       });
   }
+
+  private captureTouchEvents(canvasEl: HTMLCanvasElement) {
+    fromEvent(canvasEl, 'touchstart')
+    .pipe(
+      switchMap((e) => {
+        return fromEvent(canvasEl, 'touchmove')
+          .pipe(
+            takeUntil(fromEvent(canvasEl, 'touchend')),
+            takeUntil(fromEvent(canvasEl, 'touchcancel')),
+            pairwise() /* Return the previous and last values as array */
+          );
+      })
+    ).subscribe((res: [TouchEvent, TouchEvent]) => {
+      const rect = canvasEl.getBoundingClientRect();
+   
+      const prevPos = {
+        x: res[0].touches[0].clientX - rect.left,
+        y: res[0].touches[0].clientY - rect.top
+      };
+      const currentPos = {
+        x: res[1].touches[0].clientX - rect.left,
+        y: res[1].touches[0].clientY - rect.top
+      };
+      this.drawOnCanvas(prevPos, currentPos);
+    });
+  }
+
 
   private drawOnCanvas(prevPos: Line, currentPos: Line) {
     if (!this.cx) { return; }
