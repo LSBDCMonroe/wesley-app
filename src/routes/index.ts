@@ -5,8 +5,7 @@ const SetRoutes = (app : any) => {
     .post('/api/register', UserController.register)
     .post('/api/search-user', UserController.searchUser)
     .post('/api/update-user', UserController.searchUser) //update classification
-    .get('/', (req: any,res: any)=>res.send({ message: 'Online' }));
-    //post to increase count
+    .get('/api', (req: any,res: any)=>res.send({ message: 'Online!!' }));
 }
 
 export { SetRoutes };

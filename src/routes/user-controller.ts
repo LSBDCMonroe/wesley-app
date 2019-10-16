@@ -9,7 +9,7 @@ export default class UserController {
       let { firstName, lastName, email, classification, signature } = req.body;
       let user = { firstName, lastName, email, classification, signature }
       //if(!userTest({ user })) return next("Not a Valid User");
-      console.log("here")
+
       await new userModel(user).save();
       res.status(200)
          .send({ sucess: true, user })
