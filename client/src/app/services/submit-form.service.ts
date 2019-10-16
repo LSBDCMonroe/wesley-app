@@ -6,7 +6,7 @@ import { User } from '../model';
   providedIn: 'root'
 })
 export class SubmitFormService {
- apiUrl = 'http://localhost:8080/';
+ apiUrl = 'http://localhost:8080/api';
  headers = new HttpHeaders({ 'Content-Type': 'application/json'})
   constructor( private http: HttpClient) { }
 
