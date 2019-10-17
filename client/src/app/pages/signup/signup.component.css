@@ -5,4 +5,17 @@
     box-sizing: content-box;
     display: grid;
     place-items: center;
+    width: 100%;
+}
+
+.form-wapper{ 
+    place-items: center;
+    display: block;
+    width: 70%;
+}
+
+@media (max-width: 600px){
+    .form-wapper{
+        width: 92%;
+    }
 }

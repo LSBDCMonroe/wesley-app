@@ -1,22 +1,23 @@
 
 <form [@openClose]="isOpen ? 'open' : 'closed'"  [formGroup]='myForm' class="form-grid card">
         <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
+        <!-- Refractor *ngFor -->
     <section>
         <label hidden for="firstName">First Name</label>
         <input matInput name="firstName" placeholder="First Name" formControlName="firstName">
-        <mat-error *ngIf='firstName.touched && firstName.invalid'>Error</mat-error>
+        <mat-error *ngIf='firstName.touched && firstName.invalid'>Error, invalid first name</mat-error>
     </section>
 
     <section>
         <label hidden for="lastName">Last Name</label>
         <input matInput name="lastName" placeholder="Last Name" formControlName="lastName">
-        <mat-error *ngIf='lastName.touched && lastName.invalid'>Error</mat-error>
+        <mat-error *ngIf='lastName.touched && lastName.invalid'>Error, invalid last name</mat-error>
     </section>
 
     <section>
         <label hidden for="email">Email</label>
         <input matInput name="email" placeholder="Email" formControlName="email">
-        <mat-error *ngIf='email.touched && email.invalid'>Error</mat-error>
+        <mat-error *ngIf='email.touched && email.invalid'>Error, invalid email</mat-error>
     </section>
 
     <section>
@@ -38,7 +39,10 @@
     <section class="grid-2">
     <button  style="margin: 1px" class="btn waves-effect waves-light teal darken-3"  routerLink='/'>Go Back <i
             class="material-icons right">send</i></button>
-    <button  style="margin: 1px" class="btn waves-effect waves-light teal darken-3" type="submit" (click)="onCreate()">Submit <i
+    <button  style="margin: 1px" class="btn waves-effect waves-light teal darken-3" type="submit" (click)="submit()">Submit <i
                 class="material-icons right">send</i></button>
     </section>
 </form>
+
+<app-completed confirmed='confirmed'></app-completed>
+

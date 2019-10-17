@@ -1,34 +1,50 @@
 <div class="container">
-<mat-card class='card-1 pop-appear' *ngIf='!status'>
+<mat-card class='card-1 pop-appear' *ngIf='!hasRegistered'>
     <mat-card-header>
       <mat-card-title>Welcome to Wesley App</mat-card-title>
       <mat-card-subtitle>Kayak</mat-card-subtitle>
     </mat-card-header>
     <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
     <mat-card-content>
-      <h5>
-        Have you ever signed up with Wesley App?
-      </h5>
+      <h5>Have you ever signed up with Wesley App?</h5>
     </mat-card-content>
     <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
       <button mat-button  class="teal lighten-2" (click)='setStatus(true)'>Yes</button>
       <button mat-button class="teal lighten-2" routerLink='/signup'>No</button>
     </mat-card-actions>
   </mat-card>
-
-
-  <mat-card *ngIf='status' class='card-1 pop-appear'>
+ 
+  <mat-card *ngIf='hasRegistered  && !gotUser' class='card-1 pop-appear'>
         <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
         <mat-card-header>  
           <mat-card-title>Enter Your Email</mat-card-title>
         </mat-card-header>
        
-        <mat-card-content>
-          <input placeholder="Enter Your Email">
+        <mat-card-content [formGroup]='formGroup'>
+          <input placeholder="Enter Your Email" formControlName='email'>
+          <mat-error *ngIf='email.touched && email.invalid'>Error, invalid email</mat-error>
         </mat-card-content>
         <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
           <button mat-button  class="teal lighten-2" (click)='setStatus(false)'>Go Back</button>
-          <button mat-button class="teal lighten-2">Submit</button>
+          <button mat-button class="teal lighten-2" (click)='searchUser()'>Submit</button>
         </mat-card-actions>
       </mat-card>
+
+      <mat-card *ngIf='hasRegistered  && gotUser' class='card-1 pop-appear'>
+          <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
+          <mat-card-header>  
+            <mat-card-title>Is this information correct?</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <h6>Name: </h6>
+              <h6>Classification: </h6>
+              <h6>Signature: </h6>
+              <h6>Number of Past Vists: </h6>
+          </mat-card-content>
+        
+          <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
+            <button mat-button  class="teal lighten-2" (click)='confirmUser()'>Yes</button>
+            <button mat-button class="teal lighten-2" (click)='resetUser()'>No</button>
+          </mat-card-actions>
+        </mat-card>
   </div>

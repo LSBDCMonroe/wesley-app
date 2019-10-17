@@ -13,7 +13,6 @@ import { ModalComponent } from '../../components/modal/modal.component';
   styleUrls: ['./forms.component.css'],
   animations: [
     trigger('openClose', [
-      // ...
       state('open', style({
         transform: 'scale(1)'
       })),
@@ -32,6 +31,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
 export class FormsComponent implements OnInit {
   private myForm: FormGroup;
   private isOpen = false;
+  private confirmed = false;
   public signature: Position[];
   public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'None'];
 
@@ -45,14 +45,13 @@ export class FormsComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      firstName : ['', [ Validators.required, Validators.minLength(2)]],
-      lastName : ['', [ Validators.required, Validators.minLength(2)]],
-      email: ['', [ Validators.required, Validators.minLength(5)]],
+      firstName : ['', [ Validators.required, Validators.pattern(/^[a-zA-Z]{2,20}$/)]],
+      lastName : ['', [ Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z]{2,20}$/)]],
+      email: ['', [ Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
       classification: ['', [ Validators.required]]
     });
 
     setTimeout(() => this.toggle(), 100);
-
   }
 
   get firstName() {
@@ -76,7 +75,11 @@ export class FormsComponent implements OnInit {
     const email: string = this.email.value;
     const classification: number = this.classification.value;
     const signature: Position[] = this.signature;
-    this.sf.submitUser({firstName, lastName, email, signature, classification}).subscribe((res)=>console.log(res));
+    const user: User = {firstName, lastName, email, signature, classification};
+    console.log(user);
+    if (this.signature !== undefined) {
+        this.sf.submitUser(user).subscribe((res) => console.log(res));
+    } else { alert('Input Your Signature'); }
   }
 
   getLines($event) {

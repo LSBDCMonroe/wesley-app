@@ -12,6 +12,7 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './components/modal/modal.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CompletedComponent } from './components/completed/completed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { HomeComponent } from './pages/home/home.component';
     CanvasComponent,
     ModalComponent,
     HomeComponent,
+    CompletedComponent,
   ],
   imports: [
     BrowserModule,
