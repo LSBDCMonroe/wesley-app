@@ -3,6 +3,11 @@
     max-width: 95%;
 }
 
+.grid{
+  display: grid;
+  place-items: center;
+}
+
 .container {
     min-height: 100vh;
     margin: auto;

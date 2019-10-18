@@ -6,7 +6,7 @@ import { User } from '../model';
   providedIn: 'root'
 })
 export class SubmitFormService {
- apiUrl = 'http://localhost:8080/api';
+ apiUrl = 'http://localhost/api';
  headers = new HttpHeaders({ 'Content-Type': 'application/json'})
   constructor( private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ submitUser(user: User): Observable<any> {
 
 searchUser(email: string){
   const headers: HttpHeaders = this.headers;
-  return this.http.post(`${this.apiUrl}/search`, JSON.stringify({ email }),
+  return this.http.post(`${this.apiUrl}/search-user`, JSON.stringify({ email }),
   { headers });
 }
 

@@ -69,6 +69,8 @@ export class FormsComponent implements OnInit {
     return this.myForm.get('classification');
   }
 
+
+  //new submit
   submit() {
     const firstName: string = this.myForm.controls.firstName.value;
     const lastName: string = this.lastName.value;
@@ -76,7 +78,7 @@ export class FormsComponent implements OnInit {
     const classification: number = this.classification.value;
     const signature: Position[] = this.signature;
     const user: User = {firstName, lastName, email, signature, classification};
-    console.log(user);
+    this.confirmed = true;
     if (this.signature !== undefined) {
         this.sf.submitUser(user).subscribe((res) => console.log(res));
     } else { alert('Input Your Signature'); }

@@ -17,7 +17,9 @@
     display: block;
     margin: auto
 }
-
+.stepper {
+  background: transparent;
+}
 
 
   .pop-appear {

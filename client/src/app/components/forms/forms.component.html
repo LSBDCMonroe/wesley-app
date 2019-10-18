@@ -1,5 +1,5 @@
 
-<form [@openClose]="isOpen ? 'open' : 'closed'"  [formGroup]='myForm' class="form-grid card">
+<form [@openClose]="isOpen ? 'open' : 'closed'"  [formGroup]='myForm' class="form-grid card" *ngIf='!confirmed; else done'>
         <img class="responsive-img logo" src='../../../assets/logo.jpg' alt="Wesley Logo">
         <!-- Refractor *ngFor -->
     <section>
@@ -44,5 +44,7 @@
     </section>
 </form>
 
-<app-completed confirmed='confirmed'></app-completed>
+<ng-template #done>
+<app-completed ></app-completed>
+</ng-template>
 

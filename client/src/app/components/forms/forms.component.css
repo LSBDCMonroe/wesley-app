@@ -3,6 +3,7 @@
     display: block;
     margin: auto
 }
+
 .radio-group{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -16,7 +17,7 @@
     box-sizing: border-box;
     padding: 1.8em;
     border-radius: .5em;
-
+    max-width: 95%;
 }
 
 .grid-2 {

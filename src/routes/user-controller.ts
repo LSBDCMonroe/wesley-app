@@ -21,8 +21,12 @@ export default class UserController {
 
   static async searchUser(req : Request, res : Response, next : NextFunction) : Promise<any>{
     try {
+      const { email } = req.body;
+      const user = await userModel.findOne({ email });
+      if(!user) return next('Not a Valid User');
+
       res.status(200)
-         .send({ sucess: true})
+         .send({ sucess: true, user})
     }
     catch (err){
       next(err);

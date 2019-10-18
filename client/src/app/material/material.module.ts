@@ -10,7 +10,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 const MaterialComponents = [
+  MatStepperModule,
   MatRadioModule,
   MatCardModule,
   MatListModule,
