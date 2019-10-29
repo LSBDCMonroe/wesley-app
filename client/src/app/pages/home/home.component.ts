@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model';
 import { SubmitFormService } from '../../services/submit-form.service';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms'
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,14 +30,18 @@ export class HomeComponent implements OnInit {
     return this.formGroup.get('email');
   }
 
-  searchUser() {
+  searchUser(stepper: MatStepper) {
     this.gotUser = true;
     if (this.formGroup.status === 'VALID') {
       this.submit.searchUser(this.email.value).subscribe(res => console.log(res));
+      this.goForward(stepper);
     } else {
       alert('Invalid Details');
     }
   }
+  goForward(stepper: MatStepper) {
+    stepper.next();
+}
 
   resetUser() {
     this.gotUser = false;
