@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model';
-import { SubmitFormService } from '../../services/submit-form.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 
@@ -11,10 +10,9 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class HomeComponent implements OnInit {
   hasRegistered: boolean;
-  user: User;
-  gotUser = false;
+  gotEmail = false;
   formGroup: FormGroup;
-  constructor(private submit: SubmitFormService, private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -31,26 +29,22 @@ export class HomeComponent implements OnInit {
   }
 
   searchUser(stepper: MatStepper) {
-    this.gotUser = true;
     if (this.formGroup.status === 'VALID') {
-      this.submit.searchUser(this.email.value).subscribe(res => console.log(res));
-      this.goForward(stepper);
+      this.gotEmail = true;
+     // this.submit.searchUser(this.email.value).subscribe(res => console.log(res));
+     stepper.next();
     } else {
       alert('Invalid Details');
+  
     }
   }
+
   goForward(stepper: MatStepper) {
+    this.gotEmail = true;
     stepper.next();
 }
-
-  resetUser() {
-    this.gotUser = false;
-    this.user = null;
-  }
-
-  ConfirmUser() {
-    this.gotUser = false;
-    this.user = null;
+  setGotEmail(bool : boolean){
+      this.gotEmail = bool;
   }
 
 

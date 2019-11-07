@@ -19,7 +19,7 @@ submitUser(user: User): Observable<any> {
 
 searchUser(email: string){
   const headers: HttpHeaders = this.headers;
-  return this.http.post(`${this.apiUrl}/search-user`, JSON.stringify({ email }),
+  return this.http.post(`${this.apiUrl}/search-user`, JSON.stringify({ email}),
   { headers });
 }
 
