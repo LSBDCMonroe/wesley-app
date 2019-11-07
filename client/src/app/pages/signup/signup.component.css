@@ -12,6 +12,13 @@
     min-width: 360px;
 }
 
+.stepper {
+    background: transparent;
+    max-width: 95vw;
+    
+  }
+  
+
 @media (max-width: 600px){
     .form-wapper{
         width: 92%;

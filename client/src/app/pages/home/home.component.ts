@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  setStatus(value: boolean) {
+  setStatus(value: boolean | any) {
     this.hasRegistered = value;
   }
 

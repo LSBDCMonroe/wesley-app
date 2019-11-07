@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './components/modal/modal.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CompletedComponent } from './components/completed/completed.component';
+import { DetailsComponent } from './components/details/details.component';
+import { SelectionComponent } from './components/selection/selection.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,8 @@ import { CompletedComponent } from './components/completed/completed.component';
     ModalComponent,
     HomeComponent,
     CompletedComponent,
+    DetailsComponent,
+    SelectionComponent,
   ],
   imports: [
     BrowserModule,

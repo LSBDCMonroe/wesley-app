@@ -19,10 +19,13 @@
     border-radius: .5em;
     max-width: 95%;
 }
-
+.rotated{
+    transform: rotate(180deg);
+}
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
 }
 
 @media(max-width: 600px){

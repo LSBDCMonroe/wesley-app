@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { SubmitFormService } from '../../services/submit-form.service';
 import { User} from '../../model';
@@ -29,8 +29,11 @@ import { ModalComponent } from '../../components/modal/modal.component';
   ],
 })
 export class FormsComponent implements OnInit {
+  @Input() stepper;
+
   private myForm: FormGroup;
   private isOpen = false;
+
   private confirmed = false;
   public signature: Position[];
   public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'None'];
@@ -48,6 +51,7 @@ export class FormsComponent implements OnInit {
       firstName : ['', [ Validators.required, Validators.pattern(/^[a-zA-Z]{2,20}$/)]],
       lastName : ['', [ Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z]{2,20}$/)]],
       email: ['', [ Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+      phone: ['', [ Validators.required]],
       classification: ['', [ Validators.required]]
     });
 
@@ -69,19 +73,26 @@ export class FormsComponent implements OnInit {
     return this.myForm.get('classification');
   }
 
+  get phone() {
+    return this.myForm.get('phone');
+  }
 
-  //new submit
+
   submit() {
     const firstName: string = this.myForm.controls.firstName.value;
     const lastName: string = this.lastName.value;
     const email: string = this.email.value;
     const classification: number = this.classification.value;
+    const phone: number = this.phone.value;
     const signature: Position[] = this.signature;
     const user: User = {firstName, lastName, email, signature, classification};
     this.confirmed = true;
-    if (this.signature !== undefined) {
-        this.sf.submitUser(user).subscribe((res) => console.log(res));
-    } else { alert('Input Your Signature'); }
+
+    if (this.signature !== undefined || this.myForm.status === 'VALID') {
+        this.sf.submitUser(user).subscribe((res) =>  {
+          this.goForward(this.stepper);
+        });
+    } else { alert(this.signature !== undefined ? 'Input Your Signature' : 'Invalid Input'); }
   }
 
   getLines($event) {
@@ -95,4 +106,7 @@ export class FormsComponent implements OnInit {
   toggle() {
     this.isOpen = !this.isOpen;
   }
+  goForward(stepper) {
+    stepper.next();
+}
 }
