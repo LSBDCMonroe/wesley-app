@@ -2,7 +2,7 @@ import { Component, Output, Input, OnChanges, EventEmitter} from '@angular/core'
 import { SubmitFormService } from '../../services/submit-form.service';
 import {Observable} from 'rxjs';
 import { User} from '../../model';
-import { MatStepper } from '@angular/material/stepper';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -11,22 +11,24 @@ import { MatStepper } from '@angular/material/stepper';
 export class DetailsComponent implements OnChanges {
   @Input() email: string;
   @Output() undoGotEmail = new EventEmitter<boolean>();
-   user$: Observable<any>;
-
-
+  user$: Observable< User | any>;
+  loading: boolean;
   constructor(private submit: SubmitFormService) { }
 
   ngOnChanges() {
+    this.loading = true;
     this.submit.searchUser(this.email).subscribe((res: any) => {
-      if(res.sucess){
+      if (res.sucess) {
         this.user$ = res.user;
-        console.log(this.user$)
+      } else {
+        this.user$ = null;
       }
-      console.log(res);
+      this.loading = false;
+  
     });
   }
   
-  undoGotEmailFun(){
+  undoGotEmailFun() {
      this.undoGotEmail.emit(false);
   }
 

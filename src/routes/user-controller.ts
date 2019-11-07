@@ -24,9 +24,20 @@ export default class UserController {
       const { email } = req.body;
       const user = await userModel.findOne({ email });
       if(!user) return next('Not a Valid User');
+        res.status(200)
+           .send({ sucess: true, user})
+    }
+    catch (err){
+      next(err);
+    }
+  }
 
-      res.status(200)
-         .send({ sucess: true, user})
+  static async addVisit(req : Request, res : Response, next : NextFunction) : Promise<any>{
+    try {
+      const { email, kayakType } = req.body;
+      await userModel.updateOne({ email }, { $push : { visit :  kayakType  }  });
+        res.status(200)
+           .send({ sucess: true})
     }
     catch (err){
       next(err);
