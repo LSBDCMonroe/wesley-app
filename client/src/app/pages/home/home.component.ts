@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../model';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,9 @@ import { MatStepper } from '@angular/material/stepper';
 export class HomeComponent implements OnInit {
   hasRegistered: boolean;
   gotEmail = false;
+  confirmEmail = false;
+  user$: any;
+
   formGroup: FormGroup;
   constructor(private fb: FormBuilder) { }
 
@@ -43,9 +47,13 @@ export class HomeComponent implements OnInit {
     this.gotEmail = true;
     stepper.next();
 }
-  setGotEmail(bool : boolean){
+  setGotEmail(bool: boolean){
       this.gotEmail = bool;
   }
+
+  setUser(user: any){
+    this.user$ = user;
+}
 
 
 }

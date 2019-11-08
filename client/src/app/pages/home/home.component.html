@@ -29,14 +29,14 @@
         </mat-card-content>
         <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
           <button mat-button  class="teal lighten-2" (click)='setStatus(undefined)'>Go Back</button>
-          <button mat-button class="teal lighten-2" (click)='goForward(stepper)' >Submit</button>
+          <button mat-button class="teal lighten-2" (click)='goForward(stepper)'>Submit</button>
         </mat-card-actions>
       </mat-card>
     </mat-step>
   
-    <mat-step >
+    <mat-step [completed]="user$">
       <ng-template matStepLabel>Confirm</ng-template>
-      <app-details [email]='this.email.value' *ngIf='gotEmail' (undoGotEmail)='setGotEmail($event)'></app-details>
+      <app-details [email]='this.email.value' *ngIf='gotEmail' (undoGotEmail)='setGotEmail($event)' (user)='setUser($event)'></app-details>
     </mat-step>
 
     <mat-step >

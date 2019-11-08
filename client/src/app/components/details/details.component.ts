@@ -11,6 +11,7 @@ import { User} from '../../model';
 export class DetailsComponent implements OnChanges {
   @Input() email: string;
   @Output() undoGotEmail = new EventEmitter<boolean>();
+  @Output() user = new EventEmitter<any>();
   user$: Observable< User | any>;
   loading: boolean;
   constructor(private submit: SubmitFormService) { }
@@ -20,17 +21,24 @@ export class DetailsComponent implements OnChanges {
     this.submit.searchUser(this.email).subscribe((res: any) => {
       if (res.sucess) {
         this.user$ = res.user;
+        this.sendUser();
       } else {
         this.user$ = null;
       }
       this.loading = false;
-  
     });
+    this.sendUser();
   }
   
   undoGotEmailFun() {
      this.undoGotEmail.emit(false);
   }
+
+  sendUser() {
+    //  if(this.user$) {
+      this.user.emit("this.user$");
+     // }
+   }
 
 
 }

@@ -34,7 +34,7 @@ export default class UserController {
 
   static async addVisit(req : Request, res : Response, next : NextFunction) : Promise<any>{
     try {
-      const { email, kayakType } = req.body;
+      const { email, kayakType } : {email : string, kayakType : string} = req.body;
       await userModel.updateOne({ email }, { $push : { visit :  kayakType  }  });
         res.status(200)
            .send({ sucess: true})

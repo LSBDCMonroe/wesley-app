@@ -8,8 +8,7 @@ import { FormControl } from '@angular/forms';
 export class SelectionComponent implements OnInit {
   @Output() confirm: EventEmitter<any> = new EventEmitter();
   @Input() nextStep: any;
-  select;
-  selector = new FormControl('');
+  selector = new FormControl({type : ''});
   constructor() { }
 
   ngOnInit() {
@@ -18,6 +17,13 @@ export class SelectionComponent implements OnInit {
   emmit(bool: boolean) {
     this.confirm.emit(bool);
     this.nextStep();
+  }
+
+  get type(){
+    return this.selector.get('type');
+  }
+  display(){
+    console.log(this.type.value);
   }
 
 }
