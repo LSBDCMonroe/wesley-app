@@ -23,4 +23,10 @@ searchUser(email: string){
   { headers });
 }
 
+addVisit(email: string, selection: string){
+  const headers: HttpHeaders = this.headers;
+  return this.http.post(`${this.apiUrl}/add-visit`, JSON.stringify({ email, selection}),
+  { headers });
+}
+
 }
