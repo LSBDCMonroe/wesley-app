@@ -8,13 +8,12 @@ import { SubmitFormService } from '../../services/submit-form.service';
 })
 export class SelectionComponent implements OnInit {
   @Input() user$: any;
-  selection = new FormControl('');
+  equipment = new FormControl('');
   status = {
     loading: false,
     submitted: false,
     error: false
-  }
-  
+  };
   constructor(private sf: SubmitFormService) { }
 
   ngOnInit() {
@@ -22,12 +21,16 @@ export class SelectionComponent implements OnInit {
 
   submitForm() {
     this.status.loading = true;
-    this.sf.addVisit(this.user$.email, this.selection.value).subscribe((res: any) => {
+    this.sf.addVisit(this.user$.email, this.equipment.value).subscribe((res: any) => {
+      console.log(res);
       if (res.success) {
         this.status.submitted = true;
+        console.log(this.status.submitted)
       }
+      this.status.loading = false;
     }, (err: any) => {
       this.status.error = true;
+      this.status.loading = false;
     }, () => {
       this.status.loading = false;
     });

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../model';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +38,6 @@ export class HomeComponent implements OnInit {
      stepper.next();
     } else {
       alert('Invalid Details');
-  
     }
   }
 
@@ -54,6 +52,4 @@ export class HomeComponent implements OnInit {
   setUser(user: any){
     this.user$ = user;
 }
-
-
 }

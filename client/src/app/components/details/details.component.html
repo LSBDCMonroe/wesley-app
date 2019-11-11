@@ -3,22 +3,22 @@
   <mat-card-header  *ngIf='user$ != null && !loading'>
     <mat-card-title>Is this information correct?</mat-card-title>
   </mat-card-header>
-   <mat-card-content  *ngIf='user$ != null && !loading; else noUser'>
+   <mat-card-content  *ngIf='user$ != null && !status.loading; else noUser'>
     <h6>Name: {{(user$)?.firstName  }}</h6>
     <h6>Classification: {{(user$)?.classification  }} </h6>
     <h6>Signature: </h6>
     <h6>Number of Past Vists: </h6>
   </mat-card-content>
    <ng-template #noUser>
-      <div *ngIf='!loading'>
+      <div *ngIf='!status.loading && !status.completed'>
           Can not find the user
       </div>
-      <div *ngIf='loading'>
-         Loading
+      <div *ngIf='status.loading'>
+         <app-loader></app-loader>
       </div>
   </ng-template> 
   <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
-    <button mat-button class="teal lighten-2"   matStepperNext >Yes</button>
+    <button mat-button class="teal lighten-2"  [disabled]='!user$' matStepperNext >Yes</button>
     <button mat-button class="teal lighten-2" matStepperPrevious (click)='undoGotEmailFun()'>No</button>
   </mat-card-actions>
 </mat-card>

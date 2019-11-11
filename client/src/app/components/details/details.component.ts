@@ -13,21 +13,30 @@ export class DetailsComponent implements OnChanges {
   @Output() undoGotEmail = new EventEmitter<boolean>();
   @Output() user = new EventEmitter<any>();
   user$: Observable< User | any>;
-  loading: boolean;
+  status = {
+    loading: false,
+    completed: false,
+    error: false
+  };
   constructor(private submit: SubmitFormService) { }
 
   ngOnChanges() {
-    this.loading = true;
+    this.status = {
+      loading: true,
+      completed: false,
+      error: false
+    };
+    this.user$ = null;
     this.submit.searchUser(this.email).subscribe((res: any) => {
-      if (res.sucess) {
+      if (res.success) {
         this.user$ = res.user;
         this.sendUser();
-      } else {
-        this.user$ = null;
-      }
-      this.loading = false;
-    });
-    this.sendUser();
+        this.status.completed = true;
+      } 
+      this.status.loading = false;
+    },
+    (err: any) => {this.status.error = true; this.status.loading = false;},
+    () => this.status.loading = false);
   }
   
   undoGotEmailFun() {
@@ -35,9 +44,7 @@ export class DetailsComponent implements OnChanges {
   }
 
   sendUser() {
-    //  if(this.user$) {
-      this.user.emit("this.user$");
-     // }
+      this.user.emit(this.user$);
    }
 
 

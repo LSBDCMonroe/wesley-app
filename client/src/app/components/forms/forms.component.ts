@@ -89,8 +89,10 @@ export class FormsComponent implements OnInit {
     this.confirmed = true;
 
     if (this.signature !== undefined || this.myForm.status === 'VALID') {
-        this.sf.submitUser(user).subscribe((res) =>  {
+        this.sf.submitUser(user).subscribe((res: any) =>  {
+          if (res.success){
           this.goForward(this.stepper);
+        }
         });
     } else { alert(this.signature !== undefined ? 'Input Your Signature' : 'Invalid Input'); }
   }

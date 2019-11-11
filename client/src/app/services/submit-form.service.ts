@@ -12,6 +12,7 @@ export class SubmitFormService {
 
 submitUser(user: User): Observable<any> {
   const { firstName, lastName, email, classification, signature } = user;
+  console.log(user.email);
   const headers: HttpHeaders = this.headers;
   return this.http.post(`${this.apiUrl}/register`, JSON.stringify({ firstName, lastName, email, classification , signature}), 
   { headers });
@@ -23,9 +24,9 @@ searchUser(email: string){
   { headers });
 }
 
-addVisit(email: string, selection: string){
+addVisit(email: string,  equipment : string){
   const headers: HttpHeaders = this.headers;
-  return this.http.post(`${this.apiUrl}/add-visit`, JSON.stringify({ email, selection}),
+  return this.http.post(`${this.apiUrl}/add-visit`, JSON.stringify({ email,  equipment}),
   { headers });
 }
 

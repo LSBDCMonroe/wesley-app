@@ -15,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CompletedComponent } from './components/completed/completed.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SelectionComponent } from './components/selection/selection.component';
+import { LoaderComponent } from './components/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { SelectionComponent } from './components/selection/selection.component';
     CompletedComponent,
     DetailsComponent,
     SelectionComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
