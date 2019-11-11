@@ -7,6 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class SignupComponent implements OnInit {
   completed: boolean;
+  user : any;
   constructor() { }
 
   ngOnInit() {
@@ -14,6 +15,10 @@ export class SignupComponent implements OnInit {
   }
   goForward(stepper: MatStepper) {
     stepper.next();
+}
+
+gotUser($event){
+  this.user = $event;
 }
 
 }

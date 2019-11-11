@@ -1,19 +1,19 @@
 <div class="container">
     <mat-horizontal-stepper [@.disabled]="true" #stepper class="stepper"  *ngIf='!completed; else done'>
 
-        <mat-step>
+        <mat-step >
                 <ng-template matStepLabel>Signup</ng-template>
-                <app-forms class="form-wapper" [stepper] ='stepper'  ></app-forms>
+                <app-forms class="form-wapper" [stepper] ='stepper'  (user$)='gotUser($event)'></app-forms>
         </mat-step>
 
-        <mat-step>
-                <ng-template matStepLabel>Confirm</ng-template>
-                <app-details></app-details>
+        <mat-step >
+                <ng-template matStepLabel  >Confirm</ng-template>
+                <app-details [user$]='user' [loading]='false'></app-details>
               </mat-step>
           
               <mat-step >
                 <ng-template matStepLabel>Selection</ng-template>
-                <app-selection></app-selection>
+                <app-selection [user$]='user'></app-selection>
               </mat-step>
     </mat-horizontal-stepper>
     
@@ -21,3 +21,5 @@
             <app-completed ></app-completed>
     </ng-template>
 </div>
+
+<!-- editable="false" -->

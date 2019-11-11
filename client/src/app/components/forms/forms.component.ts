@@ -1,4 +1,4 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { SubmitFormService } from '../../services/submit-form.service';
 import { User} from '../../model';
@@ -30,11 +30,9 @@ import { ModalComponent } from '../../components/modal/modal.component';
 })
 export class FormsComponent implements OnInit {
   @Input() stepper;
-
+  @Output() user$ = new EventEmitter<any>();
   private myForm: FormGroup;
   private isOpen = false;
-
-  private confirmed = false;
   public signature: Position[];
   public classifications: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'None'];
 
@@ -86,11 +84,11 @@ export class FormsComponent implements OnInit {
     const phone: number = this.phone.value;
     const signature: Position[] = this.signature;
     const user: User = {firstName, lastName, email, signature, classification};
-    this.confirmed = true;
 
     if (this.signature !== undefined || this.myForm.status === 'VALID') {
         this.sf.submitUser(user).subscribe((res: any) =>  {
           if (res.success){
+          this.user$.emit(res.user);
           this.goForward(this.stepper);
         }
         });
