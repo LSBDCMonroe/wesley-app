@@ -37,7 +37,9 @@
     </section>
   
     <section>
-        <app-canvas (linesEvent)='getLines($event)'></app-canvas>
+        <label>
+        Sign Here</label>
+        <app-canvas (linesEvent)='getLines($event)' [lines]='[]'  [drawMode]='true'></app-canvas>
     </section>
 
     <section>

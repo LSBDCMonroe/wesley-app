@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild, Output, EventEmitter , Input} from '@angular/core';
 
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
@@ -14,12 +14,12 @@ export class CanvasComponent implements AfterViewInit {
 
   @ViewChild('canvas', {static: false}) public canvas: ElementRef;
   @Output() linesEvent: EventEmitter<any> = new EventEmitter();
+  @Input() drawMode: boolean;
+  @Input() lines: Array<any>;
   width = 500;
   height = 150;
-  lines: Position[] = [];
   drawLine: Position[] = [];
   private cx: CanvasRenderingContext2D;
-
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
@@ -34,6 +34,9 @@ export class CanvasComponent implements AfterViewInit {
 
     this.captureTouchEvents(canvasEl);
     this.captureEvents(canvasEl);
+    console.log(this.lines);
+    this.drawLines();
+
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
@@ -49,7 +52,6 @@ export class CanvasComponent implements AfterViewInit {
       })
     ).subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-     
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top
@@ -58,7 +60,7 @@ export class CanvasComponent implements AfterViewInit {
           x: res[1].clientX - rect.left,
           y: res[1].clientY - rect.top
         };
-        this.drawOnCanvas(prevPos, currentPos);
+        if(this.drawMode){this.drawOnCanvas(prevPos, currentPos);}
       });
   }
 
@@ -75,7 +77,6 @@ export class CanvasComponent implements AfterViewInit {
       })
     ).subscribe((res: [TouchEvent, TouchEvent]) => {
       const rect = canvasEl.getBoundingClientRect();
-   
       const prevPos = {
         x: res[0].touches[0].clientX - rect.left,
         y: res[0].touches[0].clientY - rect.top
@@ -84,7 +85,7 @@ export class CanvasComponent implements AfterViewInit {
         x: res[1].touches[0].clientX - rect.left,
         y: res[1].touches[0].clientY - rect.top
       };
-      this.drawOnCanvas(prevPos, currentPos);
+      if(this.drawMode){this.drawOnCanvas(prevPos, currentPos);}
     });
   }
 
@@ -123,6 +124,7 @@ export class CanvasComponent implements AfterViewInit {
    }
 
   drawLines() {
+    this.drawLine = this.lines;
    this.drawLine.forEach(({prevPos , currentPos}: Position) => this.drawOnCanvas(prevPos, currentPos));
   }
   sendLines() {

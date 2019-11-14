@@ -7,8 +7,8 @@
      <mat-card-content  *ngIf='user$ != null && !loading; else noUser'>
       <h6>Name: {{(user$)?.firstName  }}</h6>
       <h6>Classification: {{(user$)?.classification  }} </h6>
-      <h6>Signature: </h6>
-      <h6>Number of Past Vists: </h6>
+      <h6>Signature: <app-canvas [lines]='user$.signature'  [drawMode]='false'></app-canvas></h6>
+      <h6>Number of Past Vists: {{(user$)?.visitedTimes.length}}</h6>
     </mat-card-content>
      <ng-template #noUser>
         <div *ngIf='!loading'>
@@ -19,7 +19,7 @@
         </div>
     </ng-template> 
     <mat-card-actions style='display: grid; grid-template-columns: 1fr 1fr;'>
-      <button mat-button class="teal lighten-2"  [disabled]='!user$' matStepperNext >Yes</button>
       <button mat-button class="teal lighten-2" matStepperPrevious >No</button>
+      <button mat-button class="teal lighten-2"  [disabled]='!user$' matStepperNext >Yes</button>
     </mat-card-actions>
   </mat-card>

@@ -16,6 +16,7 @@ import { CompletedComponent } from './components/completed/completed.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { AdminComponent } from './pages/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     DetailsComponent,
     SelectionComponent,
     LoaderComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
