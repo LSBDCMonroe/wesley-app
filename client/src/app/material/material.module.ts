@@ -11,6 +11,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
 const MaterialComponents = [
   MatStepperModule,
   MatRadioModule,
@@ -23,7 +24,8 @@ const MaterialComponents = [
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule
 ];
 
 @NgModule({
